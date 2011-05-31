@@ -37,8 +37,5 @@ public class Layout
              : null;
     }
 
-    public String[] getPageNames()
-    {
-      return new String[] { "Index", "About", "Contact" };
-    }
+
 }

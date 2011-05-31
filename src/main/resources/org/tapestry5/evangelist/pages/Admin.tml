@@ -1,0 +1,12 @@
+<html t:type="layout" title="pelican Index"
+      t:sidebarTitle="Current Time"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      xmlns:p="tapestry:parameter">
+
+	<t:loop t:source="listOfItems" t:value="currentItem">
+		<t:pagelink t:page="admin" t:context="currentItem.id">${currentItem.name}</t:pagelink>
+	</t:loop>
+	<t:beaneditform t:object="item"/>
+   
+
+</html>
