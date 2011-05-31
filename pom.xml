@@ -1,6 +1,6 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.tapestry5.evangelist</groupId>
+    <groupId>com.spreadthesource</groupId>
     <artifactId>pelican</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
@@ -93,7 +93,7 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
                 <artifactId>tapestry-component-report</artifactId>
                 <version>${tapestry-release-version}</version>
                 <configuration>
-                    <rootPackage>org.tapestry5.evangelist</rootPackage>
+                    <rootPackage>com.spreadthesource.pelican</rootPackage>
                 </configuration>
             </plugin>
         </plugins>

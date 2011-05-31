@@ -1,4 +1,4 @@
-package org.tapestry5.evangelist.services;
+package com.spreadthesource.services;
 
 import java.io.IOException;
 

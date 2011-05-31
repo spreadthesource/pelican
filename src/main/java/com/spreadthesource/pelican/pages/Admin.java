@@ -1,4 +1,4 @@
-package org.tapestry5.evangelist.pages;
+package com.spreadthesource.pelican.pages;
 
 import java.util.List;
 
@@ -11,7 +11,8 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
-import org.tapestry5.evangelist.entities.Item;
+
+import com.spreadthesource.pelican.entities.Item;
 
 
 public class Admin

@@ -1,4 +1,4 @@
-package org.tapestry5.evangelist.entities;
+package com.spreadthesource.pelican.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -1,4 +1,4 @@
-package org.tapestry5.evangelist.components;
+package com.spreadthesource.pelican.components;
 
 import org.apache.tapestry5.*;
 import org.apache.tapestry5.annotations.*;
