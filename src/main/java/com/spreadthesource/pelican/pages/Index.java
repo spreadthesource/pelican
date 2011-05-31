@@ -36,17 +36,12 @@ public class Index
 	@OnEvent(value=EventConstants.ACTION,component="increase")
 	public void increase(long id){
 		
-		Item item = (Item)session.createCriteria(Item.class).add(Restrictions.eq("id", id));
+		Item item = (Item)session.createCriteria(Item.class).add(Restrictions.eq("id", id)).uniqueResult();
 		item.setPrice(item.getPrice()+1);
 		session.saveOrUpdate(item);
 		
+		//PUSH
+		
 	}
 	
-	@CommitAfter
-	@OnEvent(value=EventConstants.ACTION,component="decrease")
-	public void decrease(long id){
-		Item item = (Item)session.createCriteria(Item.class).add(Restrictions.eq("id", id));
-		item.setPrice(item.getPrice()-1);
-		session.saveOrUpdate(item);
-	}
 }
