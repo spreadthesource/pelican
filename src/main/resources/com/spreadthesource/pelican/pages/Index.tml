@@ -2,13 +2,10 @@
       t:sidebarTitle="Current Time"
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
       xmlns:p="tapestry:parameter">
-${user.name}
+
 	<t:grid t:source="listOfItems" t:row="currentItem" t:add="increase, decrease">
 		<t:parameter name="increaseCell">
-			<t:actionlink t:id="increase" t:context="currentItem.id">${currentItem.name}</t:actionlink>
-		</t:parameter>
-		<t:parameter name="decreaseCell">
-			<t:actionlink t:id="decrease" t:context="currentItem.id">${currentItem.name}</t:actionlink>
+			<t:actionlink t:id="increase" t:context="currentItem.id">plus</t:actionlink>
 		</t:parameter>
 	</t:grid>
 </html>
