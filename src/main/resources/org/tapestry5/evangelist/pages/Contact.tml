@@ -1,0 +1,7 @@
+<html t:type="layout" title="Contact org.tapestry5.evangelist"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      xmlns:p="tapestry:parameter">
+
+    <p>Contact org.tapestry5.evangelist ...</p>
+
+</html>
