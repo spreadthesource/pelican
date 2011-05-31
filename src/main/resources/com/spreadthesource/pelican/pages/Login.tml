@@ -1,0 +1,9 @@
+<html t:type="layout" title="pelican Index"
+      t:sidebarTitle="Current Time"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      xmlns:p="tapestry:parameter">
+
+	<t:beaneditform t:object="user" t:exclude="email"/>
+   <t:pagelink t:page="register">not registered yet ?</t:pagelink>
+
+</html>
