@@ -3,12 +3,12 @@
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
       xmlns:p="tapestry:parameter">
 
-welcome ${user.name}
+	welcome ${user.name}
 
-			
 	<t:grid t:source="listOfItems" t:row="currentItem" t:add="increase">
 		<t:parameter name="increaseCell">
 			<t:actionlink t:id="increase" t:context="currentItem.id">moooooore !</t:actionlink>
 		</t:parameter>
 	</t:grid>
+	
 </html>

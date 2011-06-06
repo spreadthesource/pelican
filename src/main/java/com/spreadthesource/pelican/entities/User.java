@@ -1,10 +1,14 @@
 package com.spreadthesource.pelican.entities;
 
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
+import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.beaneditor.NonVisual;
 
 @Entity
@@ -16,8 +20,14 @@ public class User {
 	private long id;
 	
 	private String name;
+	
 	private String email;
+	
 	private String password;
+	
+	@OneToMany(mappedBy="user")
+	@Property
+	private Collection<Bid> bids;
 	
 	public long getId() {
 		return id;
@@ -43,5 +53,10 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-		
+
+	@Override
+	public String toString() {
+
+		return this.name;
+	}
 }
