@@ -7,17 +7,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 
 import org.apache.tapestry5.beaneditor.NonVisual;
 
-@Entity
-public class Bid {
+import com.spreadthesource.pelican.entities.Item;
+import com.spreadthesource.pelican.entities.User;
 
+@Entity
+@NamedQuery(name="com.spreadthesource.pelican.entities.Bid.findMaxBid",
+			query="SELECT max(b.price) FROM Bid b WHERE b.item=:item")
+public class Bid {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NonVisual
 	private long id;
-	
 	
 	@ManyToOne
 	private User user;

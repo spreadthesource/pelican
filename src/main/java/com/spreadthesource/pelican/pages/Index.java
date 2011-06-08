@@ -3,16 +3,15 @@ package com.spreadthesource.pelican.pages;
 import java.util.Date;
 import java.util.List;
 
+
 import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.annotations.SetupRender;
-import org.apache.tapestry5.beaneditor.BeanModel;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
-import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.services.BeanModelSource;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
@@ -39,25 +38,10 @@ public class Index
 	private Item currentItem;
 	
 	@Property
-	private Bid bid;
-	
-	@Property
-	private List<Item> listOfItems;
-	
-	@Property
-	private List<Bid> listOfBids;
+	private List<Item> listOfItems;	
 	
 	@Inject
 	private Session session;
-	
-	@Property
-	private BeanModel<Bid> model;
-	
-	@Inject
-	private BeanModelSource beanModelSource;
-	
-	@Inject 
-	private Messages messages;
 	
 	@OnEvent(EventConstants.ACTIVATE)
 	public Object checkConnected(){
@@ -71,8 +55,6 @@ public class Index
 	public void setupRender(){
 		
 		listOfItems = session.createCriteria(Item.class).addOrder(Order.asc("id")).list();
-		
-		listOfBids = session.createCriteria(Bid.class).addOrder(Order.asc("id")).list();
 	}
 	
 	@CommitAfter
@@ -80,21 +62,41 @@ public class Index
 	public void increase(long id){
 		
 		Item item = (Item)session.createCriteria(Item.class).add(Restrictions.eq("id", id)).uniqueResult();
-		item.setPrice(item.getPrice()+1);
-		session.saveOrUpdate(item);
+		
+		long price = getMaxPrice(item);
 		
 		Bid	bid = new Bid();
 		bid.setDate(new Date());
 		bid.setItem(item);
-		bid.setPrice(item.getPrice());
+		bid.setPrice(price+1);
 		bid.setUser(user);
 		
 		session.persist(bid);
 		
-		
-
 		//PUSH
 		
+	}
+	
+	public long getMaxPrice(){
+		return getMaxPrice(currentItem);
+	}
+	
+	public long getMaxPrice(Item item){
+		
+		Query query = (Query)session.getNamedQuery("com.spreadthesource.pelican.entities.Bid.findMaxBid");
+		
+		query.setParameter("item", item);
+		
+		long price = 0;
+		
+		try {
+			price = (Long) query.uniqueResult();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			price = item.getPrice();
+		}
+		
+		return price;
 	}
 	
 }

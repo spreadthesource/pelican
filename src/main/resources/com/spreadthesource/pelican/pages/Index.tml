@@ -6,9 +6,12 @@
 	welcome ${user.name}
 
 	<t:grid t:source="listOfItems" t:row="currentItem" t:add="increase">
-		<t:parameter name="increaseCell">
+		<p:priceCell>
+			${maxPrice}
+		</p:priceCell>
+		<p:increaseCell>
 			<t:actionlink t:id="increase" t:context="currentItem.id">moooooore !</t:actionlink>
-		</t:parameter>
+		</p:increaseCell>
 	</t:grid>
 	
 </html>
