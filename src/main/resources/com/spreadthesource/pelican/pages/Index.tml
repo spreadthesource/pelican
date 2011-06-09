@@ -3,15 +3,18 @@
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
       xmlns:p="tapestry:parameter">
 
-	welcome ${user.name}
+	welcome ${loggedUser.name}
 
-	<t:grid t:source="listOfItems" t:row="currentItem" t:add="increase">
+	<t:grid t:source="listOfItems" t:row="currentItem" t:add="increase,user">
 		<p:priceCell>
 			${maxPrice}
 		</p:priceCell>
 		<p:increaseCell>
-			<t:actionlink t:id="increase" t:context="currentItem.id">moooooore !</t:actionlink>
+			<t:pagelink t:page="ItemDetails" t:id="details" t:context="currentItem.id">details</t:pagelink>
 		</p:increaseCell>
+		<p:userCell>
+			${currentItem.user?.name}
+		</p:userCell>
 	</t:grid>
 	
 </html>

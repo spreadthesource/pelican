@@ -1,11 +1,13 @@
 package com.spreadthesource.pelican.entities;
 
 import java.util.Collection;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.apache.tapestry5.annotations.Property;
@@ -25,10 +27,35 @@ public class Item {
 	
 	private long price;
 	
+	@ManyToOne
+	private User user;
+	
+	private Date expireDate;
+	
 	@OneToMany(mappedBy="item")
 	@Property
 	private Collection<Bid> bids;
 	
+	
+	
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public Date getExpireDate() {
+		return expireDate;
+	}
+	public void setExpireDate(Date expireDate) {
+		this.expireDate = expireDate;
+	}
+	public Collection<Bid> getBids() {
+		return bids;
+	}
+	public void setBids(Collection<Bid> bids) {
+		this.bids = bids;
+	}
 	public Item() {
 		super();
 	}

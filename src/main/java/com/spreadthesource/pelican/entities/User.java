@@ -29,6 +29,11 @@ public class User {
 	@Property
 	private Collection<Bid> bids;
 	
+
+	@OneToMany(mappedBy="user")
+	@Property
+	private Collection<Item> items;
+	
 	public long getId() {
 		return id;
 	}
@@ -53,7 +58,21 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	
 
+	public Collection<Bid> getBids() {
+		return bids;
+	}
+	public void setBids(Collection<Bid> bids) {
+		this.bids = bids;
+	}
+	public Collection<Item> getItems() {
+		return items;
+	}
+	public void setItems(Collection<Item> items) {
+		this.items = items;
+	}
 	@Override
 	public String toString() {
 
