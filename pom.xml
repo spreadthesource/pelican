@@ -7,6 +7,12 @@
     <name>pelican Tapestry 5 Application</name>
         <dependencies>
         <dependency>
+        <groupId>org.got5</groupId>
+        <artifactId>tapestry5-jquery</artifactId>
+        <version>2.1.0</version>
+    </dependency>
+    
+        <dependency>
             <groupId>org.apache.tapestry</groupId>
             <artifactId>tapestry-core</artifactId>
             <version>${tapestry-release-version}</version>
@@ -101,6 +107,24 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
 
     <repositories>
 
+<repository>
+        <id>devlab722-repo</id>
+        <url>http://nexus.devlab722.net/nexus/content/repositories/releases
+        </url>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+    </repository>
+
+    <repository>
+        <id>devlab722-snapshot-repo</id>
+        <url>http://nexus.devlab722.net/nexus/content/repositories/snapshots
+        </url>
+        <releases>
+            <enabled>false</enabled>
+        </releases>
+    </repository>
+    
         <!-- This repository is only needed when the tapestry-release-version is a snapshot release. -->
         <repository>
             <id>apache-snapshots</id>
