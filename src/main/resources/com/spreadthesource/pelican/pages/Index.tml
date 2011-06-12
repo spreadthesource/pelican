@@ -10,11 +10,26 @@
 			${maxPrice}
 		</p:priceCell>
 		<p:increaseCell>
-			<t:pagelink t:page="ItemDetails" t:id="details" t:context="currentItem.id">details</t:pagelink>
+			<t:jquery.dialogajaxlink t:dialog="itemDetails" t:zone="itemZone" t:context="currentItem.id" t:id="ajax">details</t:jquery.dialogajaxlink>
 		</p:increaseCell>
 		<p:userCell>
 			${currentItem.user?.name}
 		</p:userCell>
 	</t:grid>
+	
+	
+	<t:jquery.dialog t:clientId="itemDetails">
+    	<t:zone t:id="itemZone">
+	    	<p>Information for : ${item?.name}</p>
+		
+			<form t:type="form" t:id="form" t:context="item?.id">
+				<t:errors />
+				<label for="newBid">New Bid</label><input t:type="textfield" t:value="bidValue" t:id="bidValue" />
+				<t:submit />
+			</form>
+		</t:zone>
+    </t:jquery.dialog>
+	
+	
 	
 </html>
