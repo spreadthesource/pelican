@@ -4,13 +4,13 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.tapestry5.EventConstants;
+import org.apache.tapestry5.ajax.MultiZoneUpdate;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.annotations.SetupRender;
-import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -40,7 +40,7 @@ public class Index
 	@Property
 	private Item currentItem;
 	
-	@Property
+	//@Property
 	private List<Item> listOfItems;	
 	
 	@Inject
@@ -54,10 +54,8 @@ public class Index
 		return null;
 	}
 	
-	@SetupRender
-	public void setupRender(){
-		
-		listOfItems = session.createCriteria(Item.class).addOrder(Order.asc("id")).list();
+	public List<Item> getlistOfItems(){
+		return session.createCriteria(Item.class).addOrder(Order.asc("id")).list();
 	}
 	
 	public long getMaxPrice(){
@@ -84,13 +82,9 @@ public class Index
 	
 	
 	
-	
-	
 	@Property
 	private Item item;
 	
-	@Component
-	private Form form; 
 	
 	@SessionState
 	@Property
@@ -104,6 +98,8 @@ public class Index
 	@Component
 	private Zone itemZone;
 	
+	@Component
+	private Zone list;
 	
 	
 	@OnEvent(value=EventConstants.ACTION, component="ajax")
@@ -117,27 +113,26 @@ public class Index
 	}
 	
 	
-	@OnEvent(value=EventConstants.VALIDATE, component="form")
-	public void validateForm(long id){
-		item=(Item)session.createCriteria(Item.class).add(Restrictions.eq("id", id)).uniqueResult();
-		long price = getMaxPrice(item);
-		if(price>=bidValue)
-			form.recordError("Your new bid has to be greater than initial price!!");
-	}
+	
+	
 	
 	
 	@CommitAfter
-	@OnEvent(EventConstants.SUBMIT)
-	public void submitForm(long id){
-		if(form.isValid()){
-			Bid	bid = new Bid();
-			bid.setDate(new Date());
-			bid.setItem(item);
-			bid.setPrice(bidValue);
-			bid.setUser(user);
+	@OnEvent(value="add")
+	public Object addBid(int bidAmmnt, long itemId){
+		item=(Item)session.createCriteria(Item.class).add(Restrictions.eq("id", itemId)).uniqueResult();
+		long price = getMaxPrice(item);
+		//if(price>=bidValue)
 			
-			session.persist(bid);
-		}
+		Bid	bid = new Bid();
+		bid.setDate(new Date());
+		bid.setItem(item);
+		bid.setPrice(price+bidAmmnt);
+		bid.setUser(user);
+		
+		session.persist(bid);
+		return new MultiZoneUpdate("itemZone",itemZone).add("list", list);
+		//return itemZone.getBody();
 	}
 	
 

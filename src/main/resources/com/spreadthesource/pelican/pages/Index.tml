@@ -5,41 +5,39 @@
 
 	welcome ${loggedUser.name}
 
-<ul class="items">
-	<t:loop t:source="listOfItems" t:value="currentItem" t:add="increase,user">
-		<li>
-			<t:jquery.dialogajaxlink t:dialog="itemDetails" t:zone="itemZone" t:context="currentItem.id" t:id="ajax">
-				<img src="${asset:context:img/nophoto.png}" alt="${currentItem.Name}" title="${currentItem.Name}"/>
-				<p>
-					<strong class="name">
-						${currentItem.Name}
-					</strong>
-					<span class="expireDate">
-						${currentItem.expireDate}
-					</span>
-				</p>
-				
-				<em class="price">
-					${currentItem.Price}
-				</em>
-				<span style="display:block;clear:both"> </span	>
-			</t:jquery.dialogajaxlink>
-			
-		</li>	
-	</t:loop>
-</ul>
-
-	<t:jquery.dialog t:clientId="itemDetails">
-    	<t:zone t:id="itemZone">
-	    	<p>Information for : ${item?.name}</p>
-		
-			<form t:type="form" t:id="form" t:context="item?.id">
-				<t:errors />
-				<label for="newBid">New Bid</label><input t:type="textfield" t:value="bidValue" t:id="bidValue" />
-				<t:submit />
-			</form>
-		</t:zone>
-    </t:jquery.dialog>
+	<t:zone t:id="list">
+		<ul class="items">
+			<t:loop t:source="listOfItems" t:value="currentItem" t:add="increase,user">
+				<li>
+					<t:actionlink t:zone="itemZone" t:context="currentItem.id" t:id="ajax">
+						<img src="${asset:context:img/nophoto.png}" alt="${currentItem.Name}" title="${currentItem.Name}"/>
+						<p>
+							<strong class="name">
+								${currentItem.Name}
+							</strong>
+							<span class="expireDate">
+								${currentItem.expireDate}
+							</span>
+						</p>
+						
+						<em class="price">
+							${maxPrice}
+						</em>
+						<span style="display:block;clear:both"> </span	>
+					</t:actionlink>
+					
+				</li>	
+			</t:loop>
+		</ul>
+	</t:zone>
+	<t:zone t:id="itemZone">
+		<t:if t:test="item">
+	    	<p>Information for : ${item?.name} -> </p>
+			<t:eventlink t:event="add" t:context="[1,item?.id]" t:zone="itemZone">+1</t:eventlink><br/>
+			<t:eventlink t:event="add" t:context="[5,item?.id]" t:zone="itemZone">+5</t:eventlink><br/>
+			<t:eventlink t:event="add" t:context="[10,item?.id]" t:zone="itemZone">+10</t:eventlink>
+		</t:if>
+	</t:zone>
 	
 	
 	
