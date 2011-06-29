@@ -20,7 +20,16 @@ import com.spreadthesource.pelican.entities.User;
 public class Admin
 {
 	@Property
-	private Item item, currentItem;
+	private Item currentItem;
+	
+	@Property
+	private String name;
+	
+	@Property
+	private String description;
+	
+	@Property
+	private long price;
 	
 	@Property
 	private List<Item> listOfItems;
@@ -36,6 +45,11 @@ public class Admin
 	@CommitAfter
 	@OnEvent(EventConstants.SUCCESS)
 	public void formSuccess(){
+		Item item = new Item();
+		item.setDescription(description);
+		item.setName(name);
+		item.setPrice(price);
+		
 		item.setUser(user);
 		session.persist(item);
 	}
@@ -44,7 +58,12 @@ public class Admin
 	public Object initializeItem(long i){
 		if(!userExists)
 			return Login.class;
-		item = (Item)session.createCriteria(Item.class).add(Restrictions.eq("id", i)).uniqueResult();
+		Item currentItem = (Item)session.createCriteria(Item.class).add(Restrictions.eq("id", i)).uniqueResult();
+		
+		price = currentItem.getPrice();
+		name = currentItem.getName();
+		description = currentItem.getDescription();
+		
 		return null;
 	}
 	@SetupRender

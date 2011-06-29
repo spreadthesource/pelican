@@ -6,7 +6,26 @@
 	<t:loop t:source="listOfItems" t:value="currentItem">
 		<t:pagelink t:page="admin" t:context="currentItem.id">${currentItem.name}</t:pagelink>
 	</t:loop>
-	<t:beaneditform t:object="item"/>
-   
-
+	
+	<form t:type="form" t:id="item">
+		<p>
+			<label t:type="label" t:id="nameLabel" t:for="idName" />
+			<input t:type="textField" t:id="idName" t:value="name" />
+		</p>
+		
+		<p>
+			<label t:type="label" t:id="descriptionLabel" t:for="idDescription" />
+			<div t:type="textArea" t:id="idDescription" t:value="description" />
+		</p>
+		
+		<p>
+			<label t:type="label" t:id="priceLabel" t:for="idPrice" />
+			<input t:type="textField" t:id="idPrice" t:value="price" />
+		</p>	
+		
+		<p>
+			<submit t:type="submit" t:id="idSubmit" value="${message:submit-label}" />
+		</p>
+	</form>
+	
 </html>
