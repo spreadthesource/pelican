@@ -8,8 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.beaneditor.NonVisual;
+import org.apache.tapestry5.beaneditor.Validate;
 
 @Entity
 public class User {
@@ -20,6 +20,8 @@ public class User {
 	private long id;
 	
 	private String name;
+	
+	
 	
 	private String email;
 	
