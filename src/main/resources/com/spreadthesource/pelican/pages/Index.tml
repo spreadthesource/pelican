@@ -5,21 +5,27 @@
 
 	welcome ${loggedUser.name}
 
-<ul>
+<ul class="items">
 	<t:loop t:source="listOfItems" t:value="currentItem" t:add="increase,user">
-		<t:jquery.dialogajaxlink t:dialog="itemDetails" t:zone="itemZone" t:context="currentItem.id" t:id="ajax">
-			<li>
-				<span class="expireDate">
-					${currentItem.expireDate}
-				</span>
-				<span class="name">
-					${currentItem.Name}
-				</span>
-				<span class="price">
+		<li>
+			<t:jquery.dialogajaxlink t:dialog="itemDetails" t:zone="itemZone" t:context="currentItem.id" t:id="ajax">
+				<img src="${asset:context:img/nophoto.png}" alt="${currentItem.Name}" title="${currentItem.Name}"/>
+				<p>
+					<strong class="name">
+						${currentItem.Name}
+					</strong>
+					<span class="expireDate">
+						${currentItem.expireDate}
+					</span>
+				</p>
+				
+				<em class="price">
 					${currentItem.Price}
-				</span>
-			</li>	
-		</t:jquery.dialogajaxlink>
+				</em>
+				<span style="display:block;clear:both"> </span	>
+			</t:jquery.dialogajaxlink>
+			
+		</li>	
 	</t:loop>
 </ul>
 

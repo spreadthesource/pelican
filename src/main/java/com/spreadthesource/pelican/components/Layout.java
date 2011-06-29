@@ -8,7 +8,8 @@ import org.apache.tapestry5.BindingConstants;
 /**
  * Layout component for pages of application pelican.
  */
-@IncludeStylesheet("context:layout/layout.css")
+//@IncludeStylesheet("context:layout/layout.css")
+@Import(stylesheet={"context:css/styles.css"})
 public class Layout
 {
     /** The page title, for the <title> element and the <h1> element. */
@@ -19,13 +20,7 @@ public class Layout
     @Property
     private String pageName;
 
-    @Property
-    @Parameter(defaultPrefix = BindingConstants.LITERAL)
-    private String sidebarTitle;
-
-    @Property
-    @Parameter(defaultPrefix = BindingConstants.LITERAL)
-    private Block sidebar;
+    
 
     @Inject
     private ComponentResources resources;

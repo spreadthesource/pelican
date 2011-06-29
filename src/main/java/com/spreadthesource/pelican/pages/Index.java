@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SessionState;
@@ -23,7 +24,7 @@ import com.spreadthesource.pelican.entities.Bid;
 import com.spreadthesource.pelican.entities.Item;
 import com.spreadthesource.pelican.entities.User;
 
-
+@Import(stylesheet={"context:css/index.css"})
 public class Index
 {
 	@SessionState

@@ -18,59 +18,48 @@ Description: A Web 2.0 design with fluid width suitable for blogs and small webs
         <title>${title}</title>
     </head>
     <body>
-        <!-- start header -->
-        <div id="header">
-            <div id="logo">
-                <h1>
-                    <t:pagelink page="admin">org.tapestry5.evangelist:pelican</t:pagelink>
-                </h1>
-            </div>
-           
-        </div>
-        <!-- end header -->
-        <!-- start page -->
-        <div id="page">
-            <!-- start sidebar -->
-            <div id="sidebar">
-                <ul>
-                    <li id="search" style="background: none;">
-                    </li>
-                    <li t:type="if" test="sidebar">
-                        <h2>${sidebarTitle}</h2>
-                        <div class="sidebar-content">
-                            <t:delegate to="sidebar"/>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <!-- end sidebar -->
-            <!-- start content -->
-            <div id="content">
-                <div class="post">
-                    <div class="title">
-                        <h2>${title}</h2>
-                    </div>
-                    <div class="entry">
-                        <t:body/>
-                    </div>
-                </div>
-            </div>
-            <!-- end content -->
-            <br style="clear: both;"/>
-        </div>
-        <!-- end page -->
-        <!-- start footer -->
-        <div id="footer">
-            <p class="legal">
-                &copy;2009 org.tapestry5.evangelist. All Rights Reserved.
-                &nbsp;&nbsp;&bull;&nbsp;&nbsp;
-                Design by
-                <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>
-                &nbsp;&nbsp;&bull;&nbsp;&nbsp;
-                Icons by
-                <a href="http://famfamfam.com/">FAMFAMFAM</a>.
-            </p>
-        </div>
-        <!-- end footer -->
+    	<div id="container">
+	        <!-- start header -->
+	        <div id="header">
+	            <div id="logo">
+	                <h1>
+	                    <t:pagelink page="admin">Pelican</t:pagelink>
+	                </h1>
+	            </div>
+	           
+	        </div>
+	        <!-- end header -->
+	        <!-- start page -->
+	        <div id="page">
+	            
+	            <!-- start content -->
+	            <div id="content">
+	                <div class="post">
+	                    <div class="title">
+	                        <h2>${title}</h2>
+	                    </div>
+	                    <div class="entry">
+	                        <t:body/>
+	                    </div>
+	                </div>
+	            </div>
+	            <!-- end content -->
+	            <br style="clear: both;"/>
+	        </div>
+	        <!-- end page -->
+	        <!-- start footer -->
+	        <div id="footer">
+	            <p class="legal">
+	                &copy;2009 org.tapestry5.evangelist. All Rights Reserved.
+	                &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+	                Design by
+	                <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>
+	                &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+	                Icons by
+	                <a href="http://famfamfam.com/">FAMFAMFAM</a>.
+	            </p>
+	        </div>
+	        <!-- end footer -->
+		</div>
     </body>
 </html>
