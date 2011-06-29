@@ -10,15 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.beaneditor.NonVisual;
-
 @Entity
 public class Item {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NonVisual
 	private long id;
 	
 	private String name;
@@ -26,6 +22,8 @@ public class Item {
 	private String description;
 	
 	private long price;
+	
+	private String image;
 	
 	@ManyToOne
 	private User user;
@@ -37,6 +35,12 @@ public class Item {
 	
 	
 	
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
 	public User getUser() {
 		return user;
 	}
