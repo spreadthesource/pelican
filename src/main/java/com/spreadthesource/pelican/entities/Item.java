@@ -33,7 +33,6 @@ public class Item {
 	private Date expireDate;
 	
 	@OneToMany(mappedBy="item")
-	@Property
 	private Collection<Bid> bids;
 	
 	

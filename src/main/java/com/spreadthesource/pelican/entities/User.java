@@ -26,12 +26,10 @@ public class User {
 	private String password;
 	
 	@OneToMany(mappedBy="user")
-	@Property
 	private Collection<Bid> bids;
 	
 
 	@OneToMany(mappedBy="user")
-	@Property
 	private Collection<Item> items;
 	
 	public long getId() {
