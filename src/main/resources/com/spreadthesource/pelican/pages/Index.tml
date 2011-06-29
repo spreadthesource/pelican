@@ -5,19 +5,24 @@
 
 	welcome ${loggedUser.name}
 
-	<t:grid t:source="listOfItems" t:row="currentItem" t:add="increase,user">
-		<p:priceCell>
-			${maxPrice}
-		</p:priceCell>
-		<p:increaseCell>
-			<t:jquery.dialogajaxlink t:dialog="itemDetails" t:zone="itemZone" t:context="currentItem.id" t:id="ajax">details</t:jquery.dialogajaxlink>
-		</p:increaseCell>
-		<p:userCell>
-			${currentItem.user?.name}
-		</p:userCell>
-	</t:grid>
-	
-	
+<ul>
+	<t:loop t:source="listOfItems" t:value="currentItem" t:add="increase,user">
+		<t:jquery.dialogajaxlink t:dialog="itemDetails" t:zone="itemZone" t:context="currentItem.id" t:id="ajax">
+			<li>
+				<span class="expireDate">
+					${currentItem.expireDate}
+				</span>
+				<span class="name">
+					${currentItem.Name}
+				</span>
+				<span class="price">
+					${currentItem.Price}
+				</span>
+			</li>	
+		</t:jquery.dialogajaxlink>
+	</t:loop>
+</ul>
+
 	<t:jquery.dialog t:clientId="itemDetails">
     	<t:zone t:id="itemZone">
 	    	<p>Information for : ${item?.name}</p>
