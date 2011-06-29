@@ -24,6 +24,11 @@
 		</p>	
 		
 		<p>
+			<label t:type="label" t:id="photoLabel" t:for="idPhoto">${message:photo-label}</label>
+			<input t:type="upload" t:id="idPhoto" value="file"/>
+		</p>
+		
+		<p>
 			<submit t:type="submit" t:id="idSubmit" value="${message:submit-label}" />
 		</p>
 	</form>

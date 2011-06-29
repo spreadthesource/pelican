@@ -31,6 +31,11 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
             <artifactId>tapestry-hibernate</artifactId>
             <version>${tapestry-release-version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.tapestry</groupId>
+            <artifactId>tapestry-upload</artifactId>
+            <version>${tapestry-release-version}</version>
+        </dependency>
 		<dependency>
 		   <groupId>com.h2database</groupId>
 		   <artifactId>h2</artifactId>
