@@ -13,7 +13,13 @@ import com.spreadthesource.pelican.entities.User;
 public class Register {
 
 	@Property
-	private User user;
+	private String email;
+	
+	@Property
+	private String name;
+	
+	@Property
+	private String password;
 	
 	@SessionState
 	private User loggedUser;
@@ -24,6 +30,10 @@ public class Register {
 	@CommitAfter
 	@OnEvent(EventConstants.SUCCESS)
 	public Object register(){
+		User user = new User();
+		user.setName(name);
+		user.setEmail(email);
+		user.setPassword(password);
 		session.persist(user);
 		loggedUser = user;
 		return Index.class;

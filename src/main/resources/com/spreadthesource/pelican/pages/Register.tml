@@ -2,8 +2,33 @@
       t:sidebarTitle="Current Time"
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
       xmlns:p="tapestry:parameter">
-Create a new user : 
-	<t:beaneditform t:object="user"/>
+
+ 
+   <form t:type="form" t:id="registerForm">
+   	<fieldset>
+   		<p>
+	   		<label t:type="label" t:id="usernameLabel" t:for="username" />	
+			<input t:type="textfield" t:id="username" t:value="name" />
+		</p>
+		
+		<p>
+			<label t:type="label" t:id="emailLabel" t:for="email" />	
+			<input t:type="textField" t:id="email" t:value="email" />
+		</p>
+		
+		<p>
+			<label t:type="label" t:id="passwordLabel" t:for="password" />	
+			<input t:type="passwordField" t:id="password" t:value="password" />
+		</p>
+		
+		<p>
+			<t:submit t:id="submit" value="${message:submit-label}"/>
+		</p>
+	</fieldset>
+	
+   </form>
+   
+
    <t:pagelink t:page="login">you already have an acount ?</t:pagelink>
 
 </html>
