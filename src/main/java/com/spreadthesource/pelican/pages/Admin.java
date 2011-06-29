@@ -1,5 +1,6 @@
 package com.spreadthesource.pelican.pages;
 
+import java.io.File;
 import java.util.List;
 
 import org.apache.tapestry5.EventConstants;
@@ -9,6 +10,8 @@ import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.services.ApplicationGlobals;
+import org.apache.tapestry5.upload.services.UploadedFile;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
@@ -39,8 +42,15 @@ public class Admin
 	
 	private boolean userExists;
 	
+	@Property
+    private UploadedFile file;
+
+	
 	@Inject
 	private Session session;
+	
+	@Inject
+	private ApplicationGlobals globals;
 	
 	@CommitAfter
 	@OnEvent(EventConstants.SUCCESS)
@@ -49,8 +59,13 @@ public class Admin
 		item.setDescription(description);
 		item.setName(name);
 		item.setPrice(price);
-		
 		item.setUser(user);
+		item.setImage(file.getFileName());
+
+		File copied = new File(globals.getContext().getRealFile("/static/uploadedPictures").getAbsolutePath()+ File.separator +  file.getFileName());
+
+        file.write(copied);
+		
 		session.persist(item);
 	}
 	
