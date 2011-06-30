@@ -10,7 +10,7 @@
 			<t:loop t:source="listOfItems" t:value="currentItem" t:add="increase,user">
 				<li>
 					<t:actionlink t:zone="itemZone" t:context="currentItem.id" t:id="ajax">
-						<img src="${asset:context:img/nophoto.png}" alt="${currentItem.Name}" title="${currentItem.Name}"/>
+						<img src="${imageOfItem}" alt="${currentItem.Name}" title="${currentItem.Name}"/>
 						<p>
 							<strong class="name">
 								${currentItem.Name}
