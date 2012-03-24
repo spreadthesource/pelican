@@ -25,7 +25,7 @@ import com.spreadthesource.pelican.entities.Bid;
 import com.spreadthesource.pelican.entities.Item;
 import com.spreadthesource.pelican.entities.User;
 
-@Import(stylesheet={"context:css/index.css"})
+@Import(stylesheet={})
 public class Index
 {
 	@SessionState

@@ -8,8 +8,7 @@ import org.apache.tapestry5.BindingConstants;
 /**
  * Layout component for pages of application pelican.
  */
-//@IncludeStylesheet("context:layout/layout.css")
-@Import(stylesheet={"context:css/styles.css"})
+@Import(stylesheet={"context:css/bootstrap.css", "context:css/bootstrap-responsive.css"})
 public class Layout
 {
     /** The page title, for the <title> element and the <h1> element. */
