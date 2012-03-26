@@ -18,8 +18,9 @@ Steps:
 * Start redis and hornet
 * Run "mvn jetty:run"
 * Open your browser to http://localhost:8080/pelican
+* Log in with defaults account in two differents browsers , ( joe/password , howard/password)
+* Bid from one browser on an item, see the bid updated live on the other
 
 ## More Informations & contacts
 
-* Blog: http://spreadthesource.com
 * Twitter: http://twitter.com/spreadthesource
