@@ -16,6 +16,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>com.spreadthesource</groupId>
+			<artifactId>tapestry5-hornet</artifactId>
+			<version>1.1</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.apache.tapestry</groupId>
 			<artifactId>tapestry-core</artifactId>
 			<version>${tapestry-release-version}</version>
