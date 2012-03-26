@@ -1,44 +1,72 @@
-<html t:type="layout" title="pelican Index"
-      t:sidebarTitle="Current Time"
-      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
-      xmlns:p="tapestry:parameter">
-
-	welcome ${loggedUser.name}
-
-	<t:zone t:id="list">
-		<ul class="items">
-			<t:loop t:source="listOfItems" t:value="currentItem" t:add="increase,user">
-				<li>
-					<t:actionlink t:zone="itemZone" t:context="currentItem.id" t:id="ajax">
-						<img src="${imageOfItem}" alt="${currentItem.Name}" title="${currentItem.Name}"/>
-						<p>
-							<strong class="name">
-								${currentItem.Name}
-							</strong>
-							<span class="expireDate">
-								${currentItem.expireDate}
-							</span>
-						</p>
-						
-						<em class="price">
-							${maxPrice}
-						</em>
-						<span style="display:block;clear:both"> </span	>
-					</t:actionlink>
-					
-				</li>	
-			</t:loop>
-		</ul>
-	</t:zone>
-	<t:zone t:id="itemZone">
-		<t:if t:test="item">
-	    	<p>Information for : ${item?.name} -> </p>
-			<t:eventlink t:event="add" t:context="[1,item?.id]" t:zone="itemZone">+1</t:eventlink><br/>
-			<t:eventlink t:event="add" t:context="[5,item?.id]" t:zone="itemZone">+5</t:eventlink><br/>
-			<t:eventlink t:event="add" t:context="[10,item?.id]" t:zone="itemZone">+10</t:eventlink>
-		</t:if>
-	</t:zone>
-	
-	
-	
+<html t:type="layout" title="pelican Index" t:sidebarTitle="Current Time" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+    <t:hornet.listener t:channels="channels" t:token="prop:token" /><h1>Items list</h1>
+    <div class="alert">
+        <a class="close" data-dismiss="alert">x</a>
+        <strong>Warning!</strong>
+        item expiration is not working
+    </div>
+    <t:zone t:id="list">
+        <table class="items table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Preview
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Current Price
+                    </th>
+                    <th>
+                        Expire in
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <t:loop t:source="listOfItems" t:value="currentItem" t:add="increase,user">
+                    <tr id="item-${currentItem.id}">
+                        <td>
+                            <img src="${currentItem.image}" alt="${currentItem.Name}" title="${currentItem.Name}"/>
+                        </td>
+                        <td>
+                            <strong class="name">${currentItem.Name}</strong>
+                            <br/>
+                            <em>${currentItem.description}</em>
+                        </td>
+                        <td class="price">
+                            <span class="badge badge-info">${maxPrice}</span>
+                        </td>
+                        <td class="expireDate">
+                            ${currentItem.expireDate}
+                        </td>
+                        <td>
+                            <t:actionlink t:zone="itemZone" t:context="[currentItem.id, token]" t:id="ajax">
+                                bid options
+                            </t:actionlink>
+                        </td>
+                    </tr>
+                </t:loop>
+            </tbody>
+        </table>
+    </t:zone>
+    <t:zone t:id="itemZone">
+        <t:if t:test="item">
+            Bid options for <strong>${item.name}</strong>: 
+            <t:eventlink t:event="add" t:context="[1,item?.id,token]" t:zone="itemZone" class="btn btn-success">
+                <i class="icon-shopping-cart icon-white"></i>
+                +1
+            </t:eventlink>&nbsp;
+            <t:eventlink t:event="add" t:context="[5,item?.id,token]" t:zone="itemZone" class="btn btn-success">
+                <i class="icon-shopping-cart icon-white"></i>
+                +5
+            </t:eventlink>&nbsp; 
+            <t:eventlink t:event="add" t:context="[10,item?.id,token]" t:zone="itemZone" class="btn btn-success">
+                <i class="icon-shopping-cart icon-white"></i>
+                +10
+            </t:eventlink>
+        </t:if>
+    </t:zone>
 </html>
