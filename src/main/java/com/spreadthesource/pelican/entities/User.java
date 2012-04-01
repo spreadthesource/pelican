@@ -2,6 +2,7 @@ package com.spreadthesource.pelican.entities;
 
 import java.util.Collection;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import org.apache.tapestry5.beaneditor.NonVisual;
-import org.apache.tapestry5.beaneditor.Validate;
 
 @Entity
 public class User {
@@ -19,6 +19,7 @@ public class User {
     @NonVisual
 	private long id;
 	
+	@Column(unique=true, nullable=false)
 	private String name;
 	
 	private String email;
