@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.MarkupWriter;
-import org.apache.tapestry5.ajax.MultiZoneUpdate;
+import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.OnEvent;
@@ -55,17 +55,10 @@ public class Index
     @Property
     private String[] channels;
 
-    // @Property
     private List<Item> listOfItems;
 
     @Property
     private Item item;
-
-    @Property
-    private long bidValue;
-
-    @Component
-    private Zone itemZone;
 
     @Component
     private Zone list;
@@ -102,6 +95,7 @@ public class Index
         return null;
     }
 
+    @AfterRender
     void afterRender(MarkupWriter writer)
     {
         JSONArray channelsAsJson = new JSONArray();
@@ -152,20 +146,6 @@ public class Index
         return price;
     }
 
-    @OnEvent(value = EventConstants.ACTION, component = "ajax")
-    public Object setItemFromUrl(long id, String token)
-    {
-
-        if (!loggedUserExists) return Login.class;
-
-        item = (Item) session.createCriteria(Item.class).add(Restrictions.eq("id", id))
-                .uniqueResult();
-        bidValue = getMaxPrice(item);
-
-        this.token = token;
-        return itemZone.getBody();
-    }
-
     @CommitAfter
     @OnEvent(value = "add")
     public Object addBid(int bidAmmnt, long itemId, String token)
@@ -195,7 +175,7 @@ public class Index
         JSONObject globalbidEvent = new JSONObject();
         hornet.publish("global", "new_bid", globalbidEvent, "except", token);
 
-        return new MultiZoneUpdate("itemZone", itemZone).add("list", list);
+        return list.getBody();
     }
 
 }

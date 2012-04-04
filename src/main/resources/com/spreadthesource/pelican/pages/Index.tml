@@ -43,30 +43,22 @@
                             ${currentItem.expireDate}
                         </td>
                         <td>
-                            <t:actionlink t:zone="itemZone" t:context="[currentItem.id, token]" t:id="ajax">
-                                bid options
-                            </t:actionlink>
+                            <t:eventlink t:event="add" t:context="[1,currentItem?.id,token]" t:zone="list" class="btn btn-success">
+                                <i class="icon-shopping-cart icon-white"></i>
+                                +1
+                            </t:eventlink>&nbsp;
+                            <t:eventlink t:event="add" t:context="[5,currentItem?.id,token]" t:zone="list" class="btn btn-success">
+                                <i class="icon-shopping-cart icon-white"></i>
+                                +5
+                            </t:eventlink>&nbsp; 
+                            <t:eventlink t:event="add" t:context="[10,currentItem?.id,token]" t:zone="list" class="btn btn-success">
+                                <i class="icon-shopping-cart icon-white"></i>
+                                +10
+                            </t:eventlink>
                         </td>
                     </tr>
                 </t:loop>
             </tbody>
         </table>
-    </t:zone>
-    <t:zone t:id="itemZone">
-        <t:if t:test="item">
-            Bid options for <strong>${item.name}</strong>: 
-            <t:eventlink t:event="add" t:context="[1,item?.id,token]" t:zone="itemZone" class="btn btn-success">
-                <i class="icon-shopping-cart icon-white"></i>
-                +1
-            </t:eventlink>&nbsp;
-            <t:eventlink t:event="add" t:context="[5,item?.id,token]" t:zone="itemZone" class="btn btn-success">
-                <i class="icon-shopping-cart icon-white"></i>
-                +5
-            </t:eventlink>&nbsp; 
-            <t:eventlink t:event="add" t:context="[10,item?.id,token]" t:zone="itemZone" class="btn btn-success">
-                <i class="icon-shopping-cart icon-white"></i>
-                +10
-            </t:eventlink>
-        </t:if>
     </t:zone>
 </html>
