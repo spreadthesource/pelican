@@ -4,6 +4,8 @@ Pelican is a tiny and fun realtime micro-auctionning experimental webapp.
 Select a product, start auctionning at $0.01, $0.02 or $0.05... There are no other higher bid option! But that's all the point.
 In realtime you will see the countdown running out of time and other people putting bid on the product. Be the fastest to bid!
 
+![](https://github.com/spreadthesource/pelican/raw/master/pelican.jpg)
+
 ## Getting Started
 
 Requirements:
