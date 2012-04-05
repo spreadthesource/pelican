@@ -18,7 +18,7 @@ public class AppModule
     public static void contributeApplicationDefaults(
             MappedConfiguration<String, String> configuration)
     {
-
+		//configuration.add(HornetSymbols.HORNET_URI, "http://yourServerHere:8187");
         configuration.add(SymbolConstants.SUPPORTED_LOCALES, "en");
         configuration.add(SymbolConstants.PRODUCTION_MODE, "false");
         configuration.add(SymbolConstants.APPLICATION_VERSION, "1.0-SNAPSHOT");
